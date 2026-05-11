@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>EasyBeauty | Inventario Maquillaje - Cárdenas</title>
+    <title>EasyBeauty | Sistema de Inventario Cosmético</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Fonts --> 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VGFVRKQW3R"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- GOOGLE ANALYTICS -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VGFVRKQW3R"></script>
 
-  gtag('config', 'G-VGFVRKQW3R');
-</script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-VGFVRKQW3R');
+    </script>
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <!-- LIBRERÍA PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
 
@@ -23,6 +33,7 @@
             margin:0;
             padding:0;
             box-sizing:border-box;
+            scroll-behavior:smooth;
         }
 
         body{
@@ -31,86 +42,126 @@
             color:#333;
         }
 
+        /* ===== MENÚ ===== */
+
+        nav{
+            background:#5A1035;
+            width:100%;
+            padding:15px 40px;
+            position:sticky;
+            top:0;
+            z-index:1000;
+            box-shadow:0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        nav ul{
+            display:flex;
+            justify-content:center;
+            gap:40px;
+            list-style:none;
+        }
+
+        nav ul li a{
+            color:white;
+            text-decoration:none;
+            font-weight:500;
+            transition:0.3s;
+        }
+
+        nav ul li a:hover{
+            color:#FFD5E6;
+        }
+
         /* ===== HEADER ===== */
+
         header{
             background:
-            linear-gradient(rgba(88, 16, 48, 0.85),
-            rgba(88, 16, 48, 0.85)),
+            linear-gradient(rgba(88,16,48,0.85),
+            rgba(88,16,48,0.85)),
             url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop');
+
             background-size:cover;
             background-position:center;
             color:white;
             text-align:center;
-            padding:60px 20px;
-            box-shadow:0 4px 15px rgba(0,0,0,0.15);
+            padding:80px 20px;
         }
 
         header h1{
             font-family:'Playfair Display', serif;
-            font-size:48px;
-            letter-spacing:1px;
-            margin-bottom:10px;
+            font-size:56px;
+            margin-bottom:15px;
         }
 
         .sub{
-            font-size:15px;
-            opacity:0.95;
-            letter-spacing:0.5px;
+            font-size:16px;
         }
 
         /* ===== CONTENEDOR ===== */
+
         .container{
             max-width:1200px;
-            margin:40px auto;
-            padding:20px;
+            margin:auto;
+            padding:40px 20px;
+        }
+
+        /* ===== INTRO ===== */
+
+        .academico{
+            background:white;
+            padding:25px;
+            border-left:6px solid #AD1457;
+            border-radius:15px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom:40px;
+        }
+
+        .academico h2{
+            color:#7B1E4A;
+            margin-bottom:10px;
+        }
+
+        .academico p{
+            line-height:1.8;
+            text-align:justify;
         }
 
         /* ===== TITULOS ===== */
-        .categoria{
-            font-size:28px;
-            color:#7B1E4A;
-            margin-top:40px;
-            margin-bottom:20px;
-            padding-bottom:10px;
-            border-bottom:3px solid #E8B4C8;
-            position:relative;
-        }
 
-        .categoria::after{
-            content:"";
-            width:80px;
-            height:3px;
-            background:#C2185B;
-            position:absolute;
-            left:0;
-            bottom:-3px;
+        .categoria{
+            font-size:32px;
+            color:#7B1E4A;
+            margin-top:50px;
+            margin-bottom:25px;
+            border-bottom:3px solid #E8B4C8;
+            padding-bottom:10px;
         }
 
         /* ===== GRID ===== */
+
         .grid{
             display:grid;
             grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
-            gap:28px;
+            gap:30px;
         }
 
         /* ===== TARJETAS ===== */
+
         .producto{
             background:white;
             border-radius:18px;
             overflow:hidden;
-            box-shadow:0 8px 25px rgba(0,0,0,0.08);
-            transition:all 0.3s ease;
-            border:1px solid #f3d6e3;
+            box-shadow:0 8px 20px rgba(0,0,0,0.08);
+            transition:0.3s;
         }
 
         .producto:hover{
-            transform:translateY(-6px);
-            box-shadow:0 12px 28px rgba(0,0,0,0.15);
+            transform:translateY(-8px);
         }
 
         .producto img{
             width:100%;
-            height:220px;
+            height:230px;
             object-fit:cover;
         }
 
@@ -120,9 +171,8 @@
 
         .info h3{
             color:#4A1230;
-            font-size:21px;
             margin-bottom:10px;
-            font-weight:600;
+            font-size:22px;
         }
 
         .tag{
@@ -130,26 +180,22 @@
             background:#FCE4EC;
             color:#AD1457;
             padding:5px 12px;
-            border-radius:30px;
+            border-radius:20px;
             font-size:12px;
-            font-weight:500;
             margin-bottom:12px;
         }
 
         .info p{
             margin:8px 0;
-            font-size:14px;
-            color:#555;
-            line-height:1.5;
         }
 
         /* ===== STOCK ===== */
+
         .stock{
-            font-weight:600;
             padding:10px;
-            border-radius:8px;
+            border-radius:10px;
             margin-top:12px;
-            font-size:14px;
+            font-weight:600;
         }
 
         .disponible{
@@ -168,265 +214,618 @@
         }
 
         /* ===== BOTONES ===== */
+
         button{
             width:100%;
-            margin-top:18px;
             padding:14px;
             border:none;
             border-radius:10px;
-            background:linear-gradient(135deg, #C2185B, #880E4F);
+            margin-top:18px;
+            background:linear-gradient(135deg,#C2185B,#880E4F);
             color:white;
             font-weight:600;
-            font-size:14px;
             cursor:pointer;
-            transition:0.3s ease;
-            letter-spacing:0.5px;
+            transition:0.3s;
         }
 
         button:hover{
-            background:linear-gradient(135deg, #AD1457, #6A0D3B);
             transform:scale(1.02);
         }
 
+        .btn-pdf{
+            width:auto;
+            padding:14px 25px;
+            margin-bottom:30px;
+            background:#4A1230;
+        }
+
+        /* ===== TABLA STOCK ===== */
+
+        .tabla-stock{
+            overflow-x:auto;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
+            background:white;
+            border-radius:15px;
+            overflow:hidden;
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        table th{
+            background:#7B1E4A;
+            color:white;
+            padding:15px;
+        }
+
+        table td{
+            padding:15px;
+            text-align:center;
+            border-bottom:1px solid #eee;
+        }
+
+        table tr:hover{
+            background:#fff4f8;
+        }
+
+        .stock-btn{
+            width:40px;
+            height:40px;
+            border-radius:50%;
+            margin:0 5px;
+            font-size:18px;
+            font-weight:bold;
+        }
+
+        /* ===== CARDS ===== */
+
+        .card{
+            background:white;
+            padding:30px;
+            border-radius:18px;
+            box-shadow:0 6px 18px rgba(0,0,0,0.08);
+            margin-top:20px;
+        }
+
+        .card p,
+        .card li{
+            line-height:1.8;
+        }
+
         /* ===== FOOTER ===== */
+
         footer{
             margin-top:60px;
             background:#4A1230;
             color:#f5d7e4;
             text-align:center;
             padding:25px;
-            font-size:13px;
-            letter-spacing:0.5px;
-        }
-
-        /* ===== EFECTO ACADÉMICO ===== */
-        .academico{
-            background:white;
-            border-left:5px solid #AD1457;
-            padding:18px;
-            margin-bottom:35px;
-            border-radius:12px;
-            box-shadow:0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .academico h2{
-            color:#7B1E4A;
-            margin-bottom:10px;
-        }
-
-        .academico p{
-            color:#555;
-            line-height:1.7;
-            text-align:justify;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media(max-width:768px){
-
-            header h1{
-                font-size:34px;
-            }
-
-            .categoria{
-                font-size:24px;
-            }
-
         }
 
     </style>
+
 </head>
 
 <body>
 
+    <!-- ===== MENÚ ===== -->
+
+    <nav>
+
+        <ul>
+
+            <li>
+                <a href="#inventario">Inventario</a>
+            </li>
+
+            <li>
+                <a href="#stock">Control Stock</a>
+            </li>
+
+            <li>
+                <a href="#misionVision">Misión y Visión</a>
+            </li>
+
+            <li>
+                <a href="#integrantes">Integrantes</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <!-- ===== HEADER ===== -->
+
     <header>
+
         <h1>EasyBeauty</h1>
+
         <p class="sub">
-            Sistema Académico de Inventario Cosmético |
-            Sucursal Cárdenas, Tabasco
+            Sistema Académico de Inventario Cosmético
         </p>
+
     </header>
+
+    <!-- ===== CONTENEDOR ===== -->
 
     <div class="container">
 
-        <!-- INTRODUCCIÓN FORMAL -->
+        <!-- INTRO -->
+
         <div class="academico">
-            <h2>Gestión de Inventario Cosmético</h2>
+
+            <h2>
+                Gestión de Inventario Cosmético
+            </h2>
+
             <p>
-                El presente sistema permite administrar y supervisar en tiempo real
-                la disponibilidad de productos cosméticos dentro de la sucursal
-                EasyBeauty Cárdenas. La plataforma facilita la consulta inmediata
-                del stock, clasificación de artículos por categoría y control
-                comercial de maquillaje mediante registros organizados y dinámicos.
+                Plataforma académica diseñada para administrar productos
+                cosméticos en tiempo real, permitiendo consultar existencias,
+                controlar stock y organizar el inventario de maquillaje.
             </p>
-        </div>
-
-        <!-- LABIALES -->
-        <h2 class="categoria">Labiales</h2>
-
-        <div class="grid">
-
-            <div class="producto">
-
-                <img src="https://via.placeholder.com/400x300.png/f8bbd0/880e4f?text=Labial+Mate" alt="Labial Mate">
-
-                <div class="info">
-
-                    <h3>Labial Mate Indeleble 24h</h3>
-
-                    <span class="tag">Tono: Rojo Pasión</span>
-
-                    <p><strong>Código:</strong> EB-LB01</p>
-
-                    <p><strong>Precio:</strong> $189 MXN</p>
-
-                    <p class="stock disponible">
-                        Stock: 22 piezas disponibles
-                    </p>
-
-                    <button onclick="consultarProducto('Labial Mate 24h', 'EB-LB01', 'Labiales', 'Rojo Pasión', 22)">
-                        Consultar Disponibilidad
-                    </button>
-
-                </div>
-            </div>
-
-            <div class="producto">
-
-                <img src="https://via.placeholder.com/400x300.png/f48fb1/880e4f?text=Gloss" alt="Lip Gloss">
-
-                <div class="info">
-
-                    <h3>Lip Gloss Hidratante</h3>
-
-                    <span class="tag">Tono: Nude Rose</span>
-
-                    <p><strong>Código:</strong> EB-LG02</p>
-
-                    <p><strong>Precio:</strong> $145 MXN</p>
-
-                    <p class="stock pocas">
-                        Stock: Solo 3 piezas
-                    </p>
-
-                    <button onclick="consultarProducto('Lip Gloss Hidratante', 'EB-LG02', 'Labiales', 'Nude Rose', 3)">
-                        Consultar Disponibilidad
-                    </button>
-
-                </div>
-            </div>
 
         </div>
 
-        <!-- ROSTRO -->
-        <h2 class="categoria">Rostro</h2>
+        <!-- ===== INVENTARIO ===== -->
 
-        <div class="grid">
+        <section id="inventario">
 
-            <div class="producto">
+            <h2 class="categoria">
+                Inventario de Productos
+            </h2>
 
-                <img src="https://via.placeholder.com/400x300.png/ce93d8/4a148c?text=Base" alt="Base Maquillaje">
+            <button class="btn-pdf" onclick="descargarPDF()">
+                Descargar Inventario PDF
+            </button>
 
-                <div class="info">
+            <div class="grid">
 
-                    <h3>Base Líquida Cobertura Total</h3>
+                <!-- PRODUCTO 1 -->
 
-                    <span class="tag">Tono: Beige Medio</span>
+                <div class="producto">
 
-                    <p><strong>Código:</strong> EB-BS01</p>
+                    <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=1200&auto=format&fit=crop">
 
-                    <p><strong>Precio:</strong> $320 MXN</p>
+                    <div class="info">
 
-                    <p class="stock disponible">
-                        Stock: 12 piezas disponibles
-                    </p>
+                        <h3>Labial Mate Indeleble 24h</h3>
 
-                    <button onclick="consultarProducto('Base Líquida Cobertura Total', 'EB-BS01', 'Rostro', 'Beige Medio', 12)">
-                        Consultar Disponibilidad
-                    </button>
+                        <span class="tag">
+                            Rojo Pasión
+                        </span>
 
-                </div>
-            </div>
+                        <p>
+                            <strong>Código:</strong> EB-LB01
+                        </p>
 
-            <div class="producto">
+                        <p>
+                            <strong>Precio:</strong> $189 MXN
+                        </p>
 
-                <img src="https://via.placeholder.com/400x300.png/b39ddb/311b92?text=Rubor" alt="Rubor">
+                        <p class="stock disponible">
+                            Stock: 22 piezas
+                        </p>
 
-                <div class="info">
+                        <button>
+                            Consultar Disponibilidad
+                        </button>
 
-                    <h3>Rubor en Polvo Compacto</h3>
-
-                    <span class="tag">Tono: Durazno</span>
-
-                    <p><strong>Código:</strong> EB-RB03</p>
-
-                    <p><strong>Precio:</strong> $210 MXN</p>
-
-                    <p class="stock agotado">
-                        Stock: Agotado
-                    </p>
-
-                    <button onclick="consultarProducto('Rubor Compacto Durazno', 'EB-RB03', 'Rostro', 'Durazno', 0)">
-                        Avisarme cuando llegue
-                    </button>
+                    </div>
 
                 </div>
+
+                <!-- PRODUCTO 2 -->
+
+                <div class="producto">
+
+                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=1200&auto=format&fit=crop">
+
+                    <div class="info">
+
+                        <h3>Paleta de Sombras Glow</h3>
+
+                        <span class="tag">
+                            Tonos Nude
+                        </span>
+
+                        <p>
+                            <strong>Código:</strong> EB-PS05
+                        </p>
+
+                        <p>
+                            <strong>Precio:</strong> $450 MXN
+                        </p>
+
+                        <p class="stock disponible">
+                            Stock: 15 piezas
+                        </p>
+
+                        <button>
+                            Consultar Disponibilidad
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- PRODUCTO 3 -->
+
+                <div class="producto">
+
+                    <img src="https://images.unsplash.com/photo-1526045478516-99145907023c?q=80&w=1200&auto=format&fit=crop">
+
+                    <div class="info">
+
+                        <h3>Corrector Líquido HD</h3>
+
+                        <span class="tag">
+                            Beige Claro
+                        </span>
+
+                        <p>
+                            <strong>Código:</strong> EB-CL04
+                        </p>
+
+                        <p>
+                            <strong>Precio:</strong> $190 MXN
+                        </p>
+
+                        <p class="stock pocas">
+                            Stock: 5 piezas
+                        </p>
+
+                        <button>
+                            Consultar Disponibilidad
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- PRODUCTO 4 -->
+
+                <div class="producto">
+
+                    <img src="https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?q=80&w=1200&auto=format&fit=crop">
+
+                    <div class="info">
+
+                        <h3>Máscara de Pestañas Volumen X</h3>
+
+                        <span class="tag">
+                            Negro Intenso
+                        </span>
+
+                        <p>
+                            <strong>Código:</strong> EB-MP08
+                        </p>
+
+                        <p>
+                            <strong>Precio:</strong> $260 MXN
+                        </p>
+
+                        <p class="stock disponible">
+                            Stock: 18 piezas
+                        </p>
+
+                        <button>
+                            Consultar Disponibilidad
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- PRODUCTO 5 -->
+
+                <div class="producto">
+
+                    <img src="https://images.unsplash.com/photo-1583241800698-9c36f5f7f6e2?q=80&w=1200&auto=format&fit=crop">
+
+                    <div class="info">
+
+                        <h3>Polvo Compacto Matte</h3>
+
+                        <span class="tag">
+                            Acabado Natural
+                        </span>
+
+                        <p>
+                            <strong>Código:</strong> EB-PC09
+                        </p>
+
+                        <p>
+                            <strong>Precio:</strong> $280 MXN
+                        </p>
+
+                        <p class="stock disponible">
+                            Stock: 10 piezas
+                        </p>
+
+                        <button>
+                            Consultar Disponibilidad
+                        </button>
+
+                    </div>
+
+                </div>
+
             </div>
 
-        </div>
+        </section>
+
+        <!-- ===== CONTROL STOCK ===== -->
+
+        <section id="stock">
+
+            <h2 class="categoria">
+                Administración de Stock
+            </h2>
+
+            <div class="tabla-stock">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Producto</th>
+
+                            <th>Stock Actual</th>
+
+                            <th>Modificar</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>Labial Mate Indeleble 24h</td>
+
+                            <td id="stock1">22</td>
+
+                            <td>
+
+                                <button class="stock-btn" onclick="modificarStock('stock1', 1)">
+                                    +
+                                </button>
+
+                                <button class="stock-btn" onclick="modificarStock('stock1', -1)">
+                                    -
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Paleta de Sombras Glow</td>
+
+                            <td id="stock2">15</td>
+
+                            <td>
+
+                                <button class="stock-btn" onclick="modificarStock('stock2', 1)">
+                                    +
+                                </button>
+
+                                <button class="stock-btn" onclick="modificarStock('stock2', -1)">
+                                    -
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Corrector Líquido HD</td>
+
+                            <td id="stock3">5</td>
+
+                            <td>
+
+                                <button class="stock-btn" onclick="modificarStock('stock3', 1)">
+                                    +
+                                </button>
+
+                                <button class="stock-btn" onclick="modificarStock('stock3', -1)">
+                                    -
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>Máscara de Pestañas</td>
+
+                            <td id="stock4">18</td>
+
+                            <td>
+
+                                <button class="stock-btn" onclick="modificarStock('stock4', 1)">
+                                    +
+                                </button>
+
+                                <button class="stock-btn" onclick="modificarStock('stock4', -1)">
+                                    -
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- ===== MISIÓN Y VISIÓN ===== -->
+
+        <section id="misionVision">
+
+            <h2 class="categoria">
+                Misión, Visión y Objetivos
+            </h2>
+
+            <div class="card">
+
+                <h3>Misión</h3>
+
+                <p>
+                    Proporcionar una plataforma eficiente para el control
+                    y administración de inventarios cosméticos.
+                </p>
+
+                <br>
+
+                <h3>Visión</h3>
+
+                <p>
+                    Ser un sistema moderno e innovador en la gestión digital
+                    de productos de maquillaje.
+                </p>
+
+                <br>
+
+                <h3>Objetivos</h3>
+
+                <ul>
+
+                    <li>
+                        Administrar el stock en tiempo real.
+                    </li>
+
+                    <li>
+                        Facilitar el control de inventarios.
+                    </li>
+
+                    <li>
+                        Mejorar la organización de productos.
+                    </li>
+
+                    <li>
+                        Permitir reportes descargables en PDF.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+        <!-- ===== INTEGRANTES ===== -->
+
+        <section id="integrantes">
+
+            <h2 class="categoria">
+                Integrantes del Proyecto
+            </h2>
+
+            <div class="card">
+
+                <p>
+                    <strong>
+                        • Itzel Ivonne Hernández García
+                    </strong>
+                </p>
+
+                <br>
+
+                <p>
+                    <strong>
+                        • Mayra Rodríguez Vidal
+                    </strong>
+                </p>
+
+            </div>
+
+        </section>
 
     </div>
 
+    <!-- ===== FOOTER ===== -->
+
     <footer>
-        EasyBeauty Cárdenas © 2026 |
-        Plataforma de Inventario y Control Cosmético |
-        Google Cloud Platform
+
+        EasyBeauty © 2026 |
+        Plataforma de Inventario Cosmético
+
     </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
 
     <script>
 
-        function consultarProducto(nombre, codigo, categoria, tono, stock) {
+        // ===== MODIFICAR STOCK =====
 
-            let mensaje = stock > 0 ?
+        function modificarStock(id, cambio){
 
-                `Producto disponible
+            let stock = document.getElementById(id);
 
-Nombre: ${nombre}
-Tono: ${tono}
-Existencia: ${stock} piezas
-Consulte en sucursal para mayor información.`
+            let valor = parseInt(stock.innerText);
 
-                :
+            valor += cambio;
 
-                `El producto actualmente se encuentra agotado.
-Se notificará la disponibilidad del siguiente lote.`;
+            if(valor < 0){
 
-            alert(mensaje);
+                valor = 0;
 
-            gtag('event', 'consulta_producto_makeup', {
+            }
 
-                'producto_nombre': nombre,
-                'producto_sku': codigo,
-                'producto_categoria': categoria,
-                'producto_tono': tono,
-                'stock_al_consultar': stock,
-                'sucursal': 'Cardenas_Tab'
+            stock.innerText = valor;
 
-            });
+            alert("Stock actualizado correctamente.");
 
         }
 
-        window.addEventListener('load', function() {
+        // ===== DESCARGAR PDF =====
 
-            gtag('event', 'vista_inventario_makeup', {
+        async function descargarPDF(){
 
-                'seccion': 'Catalogo_Principal',
-                'sucursal': 'Cardenas_Tab'
+            const { jsPDF } = window.jspdf;
 
-            });
+            const doc = new jsPDF();
 
-        });
+            doc.setFontSize(20);
+
+            doc.text("EasyBeauty - Inventario Cosmético", 20, 20);
+
+            doc.setFontSize(12);
+
+            doc.text("Productos Disponibles:", 20, 40);
+
+            doc.text("1. Labial Mate Indeleble 24h", 20, 55);
+            doc.text("2. Paleta de Sombras Glow", 20, 70);
+            doc.text("3. Corrector Líquido HD", 20, 85);
+            doc.text("4. Máscara de Pestañas", 20, 100);
+            doc.text("5. Polvo Compacto Matte", 20, 115);
+
+            doc.text("Integrantes:", 20, 145);
+
+            doc.text("- Itzel Ivonne Hernández García", 25, 160);
+
+            doc.text("- Mayra Rodríguez Vidal", 25, 175);
+
+            doc.save("Inventario_EasyBeauty.pdf");
+
+        }
 
     </script>
 
 </body>
+
 </html>
