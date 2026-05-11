@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>EasyBeauty | Inventario Maquillaje - Cárdenas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Poppins', sans-serif;
+            background:linear-gradient(to bottom, #fff8fb, #fdf1f6);
+            color:#333;
+        }
+
+        /* ===== HEADER ===== */
+        header{
+            background:
+            linear-gradient(rgba(88, 16, 48, 0.85),
+            rgba(88, 16, 48, 0.85)),
+            url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop');
+            background-size:cover;
+            background-position:center;
+            color:white;
+            text-align:center;
+            padding:60px 20px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        header h1{
+            font-family:'Playfair Display', serif;
+            font-size:48px;
+            letter-spacing:1px;
+            margin-bottom:10px;
+        }
+
+        .sub{
+            font-size:15px;
+            opacity:0.95;
+            letter-spacing:0.5px;
+        }
+
+        /* ===== CONTENEDOR ===== */
+        .container{
+            max-width:1200px;
+            margin:40px auto;
+            padding:20px;
+        }
+
+        /* ===== TITULOS ===== */
+        .categoria{
+            font-size:28px;
+            color:#7B1E4A;
+            margin-top:40px;
+            margin-bottom:20px;
+            padding-bottom:10px;
+            border-bottom:3px solid #E8B4C8;
+            position:relative;
+        }
+
+        .categoria::after{
+            content:"";
+            width:80px;
+            height:3px;
+            background:#C2185B;
+            position:absolute;
+            left:0;
+            bottom:-3px;
+        }
+
+        /* ===== GRID ===== */
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+            gap:28px;
+        }
+
+        /* ===== TARJETAS ===== */
+        .producto{
+            background:white;
+            border-radius:18px;
+            overflow:hidden;
+            box-shadow:0 8px 25px rgba(0,0,0,0.08);
+            transition:all 0.3s ease;
+            border:1px solid #f3d6e3;
+        }
+
+        .producto:hover{
+            transform:translateY(-6px);
+            box-shadow:0 12px 28px rgba(0,0,0,0.15);
+        }
+
+        .producto img{
+            width:100%;
+            height:220px;
+            object-fit:cover;
+        }
+
+        .info{
+            padding:20px;
+        }
+
+        .info h3{
+            color:#4A1230;
+            font-size:21px;
+            margin-bottom:10px;
+            font-weight:600;
+        }
+
+        .tag{
+            display:inline-block;
+            background:#FCE4EC;
+            color:#AD1457;
+            padding:5px 12px;
+            border-radius:30px;
+            font-size:12px;
+            font-weight:500;
+            margin-bottom:12px;
+        }
+
+        .info p{
+            margin:8px 0;
+            font-size:14px;
+            color:#555;
+            line-height:1.5;
+        }
+
+        /* ===== STOCK ===== */
+        .stock{
+            font-weight:600;
+            padding:10px;
+            border-radius:8px;
+            margin-top:12px;
+            font-size:14px;
+        }
+
+        .disponible{
+            background:#E8F5E9;
+            color:#2E7D32;
+        }
+
+        .pocas{
+            background:#FFF3E0;
+            color:#EF6C00;
+        }
+
+        .agotado{
+            background:#FFEBEE;
+            color:#C62828;
+        }
+
+        /* ===== BOTONES ===== */
+        button{
+            width:100%;
+            margin-top:18px;
+            padding:14px;
+            border:none;
+            border-radius:10px;
+            background:linear-gradient(135deg, #C2185B, #880E4F);
+            color:white;
+            font-weight:600;
+            font-size:14px;
+            cursor:pointer;
+            transition:0.3s ease;
+            letter-spacing:0.5px;
+        }
+
+        button:hover{
+            background:linear-gradient(135deg, #AD1457, #6A0D3B);
+            transform:scale(1.02);
+        }
+
+        /* ===== FOOTER ===== */
+        footer{
+            margin-top:60px;
+            background:#4A1230;
+            color:#f5d7e4;
+            text-align:center;
+            padding:25px;
+            font-size:13px;
+            letter-spacing:0.5px;
+        }
+
+        /* ===== EFECTO ACADÉMICO ===== */
+        .academico{
+            background:white;
+            border-left:5px solid #AD1457;
+            padding:18px;
+            margin-bottom:35px;
+            border-radius:12px;
+            box-shadow:0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .academico h2{
+            color:#7B1E4A;
+            margin-bottom:10px;
+        }
+
+        .academico p{
+            color:#555;
+            line-height:1.7;
+            text-align:justify;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media(max-width:768px){
+
+            header h1{
+                font-size:34px;
+            }
+
+            .categoria{
+                font-size:24px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>EasyBeauty</h1>
+        <p class="sub">
+            Sistema Académico de Inventario Cosmético |
+            Sucursal Cárdenas, Tabasco
+        </p>
+    </header>
+
+    <div class="container">
+
+        <!-- INTRODUCCIÓN FORMAL -->
+        <div class="academico">
+            <h2>Gestión de Inventario Cosmético</h2>
+            <p>
+                El presente sistema permite administrar y supervisar en tiempo real
+                la disponibilidad de productos cosméticos dentro de la sucursal
+                EasyBeauty Cárdenas. La plataforma facilita la consulta inmediata
+                del stock, clasificación de artículos por categoría y control
+                comercial de maquillaje mediante registros organizados y dinámicos.
+            </p>
+        </div>
+
+        <!-- LABIALES -->
+        <h2 class="categoria">Labiales</h2>
+
+        <div class="grid">
+
+            <div class="producto">
+
+                <img src="https://via.placeholder.com/400x300.png/f8bbd0/880e4f?text=Labial+Mate" alt="Labial Mate">
+
+                <div class="info">
+
+                    <h3>Labial Mate Indeleble 24h</h3>
+
+                    <span class="tag">Tono: Rojo Pasión</span>
+
+                    <p><strong>Código:</strong> EB-LB01</p>
+
+                    <p><strong>Precio:</strong> $189 MXN</p>
+
+                    <p class="stock disponible">
+                        Stock: 22 piezas disponibles
+                    </p>
+
+                    <button onclick="consultarProducto('Labial Mate 24h', 'EB-LB01', 'Labiales', 'Rojo Pasión', 22)">
+                        Consultar Disponibilidad
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="producto">
+
+                <img src="https://via.placeholder.com/400x300.png/f48fb1/880e4f?text=Gloss" alt="Lip Gloss">
+
+                <div class="info">
+
+                    <h3>Lip Gloss Hidratante</h3>
+
+                    <span class="tag">Tono: Nude Rose</span>
+
+                    <p><strong>Código:</strong> EB-LG02</p>
+
+                    <p><strong>Precio:</strong> $145 MXN</p>
+
+                    <p class="stock pocas">
+                        Stock: Solo 3 piezas
+                    </p>
+
+                    <button onclick="consultarProducto('Lip Gloss Hidratante', 'EB-LG02', 'Labiales', 'Nude Rose', 3)">
+                        Consultar Disponibilidad
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ROSTRO -->
+        <h2 class="categoria">Rostro</h2>
+
+        <div class="grid">
+
+            <div class="producto">
+
+                <img src="https://via.placeholder.com/400x300.png/ce93d8/4a148c?text=Base" alt="Base Maquillaje">
+
+                <div class="info">
+
+                    <h3>Base Líquida Cobertura Total</h3>
+
+                    <span class="tag">Tono: Beige Medio</span>
+
+                    <p><strong>Código:</strong> EB-BS01</p>
+
+                    <p><strong>Precio:</strong> $320 MXN</p>
+
+                    <p class="stock disponible">
+                        Stock: 12 piezas disponibles
+                    </p>
+
+                    <button onclick="consultarProducto('Base Líquida Cobertura Total', 'EB-BS01', 'Rostro', 'Beige Medio', 12)">
+                        Consultar Disponibilidad
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="producto">
+
+                <img src="https://via.placeholder.com/400x300.png/b39ddb/311b92?text=Rubor" alt="Rubor">
+
+                <div class="info">
+
+                    <h3>Rubor en Polvo Compacto</h3>
+
+                    <span class="tag">Tono: Durazno</span>
+
+                    <p><strong>Código:</strong> EB-RB03</p>
+
+                    <p><strong>Precio:</strong> $210 MXN</p>
+
+                    <p class="stock agotado">
+                        Stock: Agotado
+                    </p>
+
+                    <button onclick="consultarProducto('Rubor Compacto Durazno', 'EB-RB03', 'Rostro', 'Durazno', 0)">
+                        Avisarme cuando llegue
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        EasyBeauty Cárdenas © 2026 |
+        Plataforma de Inventario y Control Cosmético |
+        Google Cloud Platform
+    </footer>
+
+    <script>
+
+        function consultarProducto(nombre, codigo, categoria, tono, stock) {
+
+            let mensaje = stock > 0 ?
+
+                `Producto disponible
+
+Nombre: ${nombre}
+Tono: ${tono}
+Existencia: ${stock} piezas
+Consulte en sucursal para mayor información.`
+
+                :
+
+                `El producto actualmente se encuentra agotado.
+Se notificará la disponibilidad del siguiente lote.`;
+
+            alert(mensaje);
+
+            gtag('event', 'consulta_producto_makeup', {
+
+                'producto_nombre': nombre,
+                'producto_sku': codigo,
+                'producto_categoria': categoria,
+                'producto_tono': tono,
+                'stock_al_consultar': stock,
+                'sucursal': 'Cardenas_Tab'
+
+            });
+
+        }
+
+        window.addEventListener('load', function() {
+
+            gtag('event', 'vista_inventario_makeup', {
+
+                'seccion': 'Catalogo_Principal',
+                'sucursal': 'Cardenas_Tab'
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
