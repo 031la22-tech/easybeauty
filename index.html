@@ -62,7 +62,7 @@ nav a:hover{
 }
 
 /* ========================= */
-/* HEADER 3D */
+/* HEADER */
 /* ========================= */
 
 .hero{
@@ -409,6 +409,28 @@ button:hover{
 
 }
 
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+th, td{
+
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:center;
+
+}
+
+th{
+
+    background:#7B1E4A;
+    color:white;
+
+}
+
 /* ========================= */
 /* FOOTER */
 /* ========================= */
@@ -465,10 +487,6 @@ footer{
 
 }
 
-/* ========================= */
-/* RESPONSIVE */
-/* ========================= */
-
 @media(max-width:768px){
 
     .titulo-3d{
@@ -490,10 +508,6 @@ footer{
 </head>
 
 <body>
-
-<!-- ========================= -->
-<!-- MENÚ -->
-<!-- ========================= -->
 
 <nav>
 
@@ -520,10 +534,6 @@ Integrantes
 </ul>
 
 </nav>
-
-<!-- ========================= -->
-<!-- HEADER -->
-<!-- ========================= -->
 
 <header class="hero">
 
@@ -566,10 +576,6 @@ Administrar Stock
 
 </header>
 
-<!-- ========================= -->
-<!-- CONTENEDOR -->
-<!-- ========================= -->
-
 <div class="container">
 
 <section id="inventario">
@@ -586,297 +592,11 @@ Descargar Inventario PDF
 
 <div class="grid" id="contenedorProductos">
 
-<!-- PRODUCTOS -->
-
-<div class="producto">
-
-<img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=800&q=80">
-
-<div class="info">
-
-<h3>Labial Mate 24h</h3>
-
-<span class="tag">
-Rojo Pasión
-</span>
-
-<p>
-Precio: $189 MXN
-</p>
-
-<p class="stock disponible">
-Stock: 22 piezas
-</p>
-
-<button onclick="consultarProducto('Labial Mate 24h',22)">
-Consultar Disponibilidad
-</button>
-
-</div>
-
-</div>
-
-<div class="producto">
-
-<img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80">
-
-<div class="info">
-
-<h3>Paleta Glow</h3>
-
-<span class="tag">
-Nude
-</span>
-
-<p>
-Precio: $450 MXN
-</p>
-
-<p class="stock disponible">
-Stock: 15 piezas
-</p>
-
-<button onclick="consultarProducto('Paleta Glow',15)">
-Consultar Disponibilidad
-</button>
-
-</div>
-
-</div>
-
-<div class="producto">
-
-<img src="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=800&q=80">
-
-<div class="info">
-
-<h3>Corrector HD</h3>
-
-<span class="tag">
-Beige Claro
-</span>
-
-<p>
-Precio: $190 MXN
-</p>
-
-<p class="stock pocas">
-Stock: 5 piezas
-</p>
-
-<button onclick="consultarProducto('Corrector HD',5)">
-Consultar Disponibilidad
-</button>
-
-</div>
-
-</div>
-
-<div class="producto">
-
-<img src="https://images.unsplash.com/photo-1631214524020-3c4d8a6d5f0f?auto=format&fit=crop&w=800&q=80">
-
-<div class="info">
-
-<h3>Máscara de Pestañas</h3>
-
-<span class="tag">
-Negro Intenso
-</span>
-
-<p>
-Precio: $260 MXN
-</p>
-
-<p class="stock disponible">
-Stock: 18 piezas
-</p>
-
-<button onclick="consultarProducto('Máscara de Pestañas',18)">
-Consultar Disponibilidad
-</button>
-
-</div>
-
-</div>
-
-<div class="producto">
-
-<img src="https://images.unsplash.com/photo-1590156208746-5c9b0b44d1d3?auto=format&fit=crop&w=800&q=80">
-
-<div class="info">
-
-<h3>Polvo Compacto</h3>
-
-<span class="tag">
-Natural
-</span>
-
-<p>
-Precio: $280 MXN
-</p>
-
-<p class="stock disponible">
-Stock: 10 piezas
-</p>
-
-<button onclick="consultarProducto('Polvo Compacto',10)">
-Consultar Disponibilidad
-</button>
-
-</div>
-
-</div>
-
-<!-- 5 PRODUCTOS NUEVOS -->
-
-<div class="producto">
-
-<img src="https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?auto=format&fit=crop&w=800&q=80">
-
-<div class="info">
-
-<h3>Delineador Waterproof</h3>
-
-<span class="tag">
-Negro
-</span>
-
-<p>
-Precio: $140 MXN
-</p>
-
-<p class="stock disponible">
-Stock: 20 piezas
-</p>
-
-<button onclick="consultarProducto('Delineador Waterproof',20)">
-Consultar Disponibilidad
-</button>
-
-</div>
-
-</div>
-
-<div class="producto">
-
-<img src="https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&w=800&q=80">
-
-<div class="info">
-
-<h3>Primer Facial Glow</h3>
-
-<span class="tag">
-Glow Finish
-</span>
-
-<p>
-Precio: $310 MXN
-</p>
-
-<p class="stock disponible">
-Stock: 11 piezas
-</p>
-
-<button onclick="consultarProducto('Primer Facial Glow',11)">
-Consultar Disponibilidad
-</button>
-
-</div>
-
-</div>
-
-<div class="producto">
-
-<img src="https://images.unsplash.com/photo-1583001931096-959e9a1a6223?auto=format&fit=crop&w=800&q=80">
-
-<div class="info">
-
-<h3>Rubor Compacto</h3>
-
-<span class="tag">
-Durazno
-</span>
-
-<p>
-Precio: $170 MXN
-</p>
-
-<p class="stock pocas">
-Stock: 4 piezas
-</p>
-
-<button onclick="consultarProducto('Rubor Compacto',4)">
-Consultar Disponibilidad
-</button>
-
-</div>
-
-</div>
-
-<div class="producto">
-
-<img src="https://images.unsplash.com/photo-1629198735660-e39ea93f5c18?auto=format&fit=crop&w=800&q=80">
-
-<div class="info">
-
-<h3>Spray Fijador</h3>
-
-<span class="tag">
-Larga Duración
-</span>
-
-<p>
-Precio: $220 MXN
-</p>
-
-<p class="stock disponible">
-Stock: 14 piezas
-</p>
-
-<button onclick="consultarProducto('Spray Fijador',14)">
-Consultar Disponibilidad
-</button>
-
-</div>
-
-</div>
-
-<div class="producto">
-
-<img src="https://images.unsplash.com/photo-1580870069867-74c57ee1bb07?auto=format&fit=crop&w=800&q=80">
-
-<div class="info">
-
-<h3>Kit de Brochas Pro</h3>
-
-<span class="tag">
-10 piezas
-</span>
-
-<p>
-Precio: $520 MXN
-</p>
-
-<p class="stock disponible">
-Stock: 9 piezas
-</p>
-
-<button onclick="consultarProducto('Kit de Brochas',9)">
-Consultar Disponibilidad
-</button>
-
-</div>
-
-</div>
-
 </div>
 
 </section>
 
-<!-- ========================= -->
 <!-- PANEL ADMIN -->
-<!-- ========================= -->
 
 <section class="panel-admin" id="panelAdmin">
 
@@ -885,7 +605,7 @@ Administración de Stock
 </h2>
 
 <p>
-Agregar nuevos productos al inventario.
+Agregar, actualizar y eliminar productos del inventario.
 </p>
 
 <div class="inputs">
@@ -894,7 +614,7 @@ Agregar nuevos productos al inventario.
 
 <input type="number" id="cantidadProducto" placeholder="Cantidad">
 
-<input type="text" id="precioProducto" placeholder="Precio">
+<input type="number" id="precioProducto" placeholder="Precio">
 
 <input type="text" id="imagenProducto" placeholder="URL imagen">
 
@@ -904,11 +624,40 @@ Agregar nuevos productos al inventario.
 Agregar Producto
 </button>
 
-</section>
+<br><br>
 
-<!-- ========================= -->
-<!-- INTEGRANTES -->
-<!-- ========================= -->
+<h3 style="color:#7B1E4A;">
+Tabla de Productos
+</h3>
+
+<br>
+
+<div style="overflow-x:auto;">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Producto</th>
+<th>Precio</th>
+<th>Stock</th>
+<th>Acciones</th>
+
+</tr>
+
+</thead>
+
+<tbody id="bodyTablaProductos">
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
 
 <section id="integrantes">
 
@@ -928,21 +677,49 @@ Integrantes
 
 </div>
 
-<!-- ========================= -->
-<!-- FOOTER -->
-<!-- ========================= -->
-
 <footer>
 
 EasyBeauty © 2026 | Plataforma Inteligente de Inventario Cosmético
 
 </footer>
 
-<!-- ========================= -->
-<!-- JAVASCRIPT -->
-<!-- ========================= -->
-
 <script>
+
+/* ========================= */
+/* BASE DE DATOS LOCAL */
+/* ========================= */
+
+let productos = [
+
+{
+    nombre:"Labial Mate 24h",
+    precio:189,
+    stock:22,
+    imagen:"https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    nombre:"Paleta Glow",
+    precio:450,
+    stock:15,
+    imagen:"https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    nombre:"Corrector HD",
+    precio:190,
+    stock:5,
+    imagen:"https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    nombre:"Máscara de Pestañas",
+    precio:260,
+    stock:18,
+    imagen:"https://images.unsplash.com/photo-1631214524020-3c4d8a6d5f0f?auto=format&fit=crop&w=800&q=80"
+}
+
+];
 
 /* ========================= */
 /* CONSULTAR PRODUCTO */
@@ -995,7 +772,124 @@ function mostrarPanelAdmin(){
 }
 
 /* ========================= */
-/* AGREGAR PRODUCTOS */
+/* RENDER PRODUCTOS */
+/* ========================= */
+
+function renderProductos(){
+
+    let contenedor =
+    document.getElementById("contenedorProductos");
+
+    contenedor.innerHTML = "";
+
+    productos.forEach((producto,index)=>{
+
+        let estadoStock = "disponible";
+
+        if(producto.stock <= 5){
+
+            estadoStock = "pocas";
+
+        }
+
+        if(producto.stock <= 0){
+
+            estadoStock = "agotado";
+
+        }
+
+        contenedor.innerHTML += `
+
+        <div class="producto">
+
+            <img src="${producto.imagen}">
+
+            <div class="info">
+
+                <h3>${producto.nombre}</h3>
+
+                <span class="tag">
+                    Producto
+                </span>
+
+                <p>
+                    Precio: $${producto.precio} MXN
+                </p>
+
+                <p class="stock ${estadoStock}">
+                    Stock: ${producto.stock} piezas
+                </p>
+
+                <button onclick="consultarProducto('${producto.nombre}',${producto.stock})">
+
+                    Consultar Disponibilidad
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+    renderTabla();
+
+}
+
+/* ========================= */
+/* RENDER TABLA */
+/* ========================= */
+
+function renderTabla(){
+
+    let body =
+    document.getElementById("bodyTablaProductos");
+
+    body.innerHTML = "";
+
+    productos.forEach((producto,index)=>{
+
+        body.innerHTML += `
+
+        <tr>
+
+            <td>${producto.nombre}</td>
+
+            <td>$${producto.precio}</td>
+
+            <td>${producto.stock}</td>
+
+            <td>
+
+                <button
+                onclick="editarProducto(${index})">
+
+                    Actualizar
+
+                </button>
+
+                <button
+                style="background:#c62828;"
+                onclick="eliminarProducto(${index})">
+
+                    Eliminar
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
+/* ========================= */
+/* AGREGAR PRODUCTO */
 /* ========================= */
 
 function agregarProducto(){
@@ -1025,48 +919,104 @@ function agregarProducto(){
 
     }
 
-    let contenedor =
-    document.getElementById("contenedorProductos");
+    productos.push({
 
-    contenedor.innerHTML += `
+        nombre:nombre,
+        precio:precio,
+        stock:cantidad,
+        imagen:imagen
 
-    <div class="producto">
+    });
 
-        <img src="${imagen}">
-
-        <div class="info">
-
-            <h3>${nombre}</h3>
-
-            <span class="tag">
-                Nuevo Producto
-            </span>
-
-            <p>
-                Precio: $${precio} MXN
-            </p>
-
-            <p class="stock disponible">
-                Stock: ${cantidad} piezas
-            </p>
-
-            <button onclick="consultarProducto('${nombre}',${cantidad})">
-
-                Consultar Disponibilidad
-
-            </button>
-
-        </div>
-
-    </div>
-
-    `;
+    renderProductos();
 
     alert("Producto agregado correctamente.");
 
+    limpiarInputs();
+
+}
+
+/* ========================= */
+/* ELIMINAR PRODUCTO */
+/* ========================= */
+
+function eliminarProducto(index){
+
+    let confirmar = confirm(
+        "¿Desea eliminar este producto?"
+    );
+
+    if(confirmar){
+
+        productos.splice(index,1);
+
+        renderProductos();
+
+    }
+
+}
+
+/* ========================= */
+/* EDITAR PRODUCTO */
+/* ========================= */
+
+function editarProducto(index){
+
+    let producto = productos[index];
+
+    let nuevoNombre =
+    prompt(
+        "Nuevo nombre:",
+        producto.nombre
+    );
+
+    let nuevoPrecio =
+    prompt(
+        "Nuevo precio:",
+        producto.precio
+    );
+
+    let nuevoStock =
+    prompt(
+        "Nuevo stock:",
+        producto.stock
+    );
+
+    if(
+        nuevoNombre !== null &&
+        nuevoPrecio !== null &&
+        nuevoStock !== null
+    ){
+
+        productos[index].nombre =
+        nuevoNombre;
+
+        productos[index].precio =
+        nuevoPrecio;
+
+        productos[index].stock =
+        nuevoStock;
+
+        renderProductos();
+
+        alert("Producto actualizado.");
+
+    }
+
+}
+
+/* ========================= */
+/* LIMPIAR INPUTS */
+/* ========================= */
+
+function limpiarInputs(){
+
     document.getElementById("nombreProducto").value = "";
+
     document.getElementById("cantidadProducto").value = "";
+
     document.getElementById("precioProducto").value = "";
+
     document.getElementById("imagenProducto").value = "";
 
 }
@@ -1091,35 +1041,31 @@ async function descargarPDF(){
 
     doc.setFontSize(12);
 
-    doc.text(
-        "Sistema Inteligente de Inventario",
-        20,
-        40
-    );
+    let y = 50;
 
-    doc.text(
-        "Integrantes:",
-        20,
-        60
-    );
+    productos.forEach((producto)=>{
 
-    doc.text(
-        "- Itzel Ivonne Hernández García",
-        25,
-        75
-    );
+        doc.text(
+            `${producto.nombre} | Precio: $${producto.precio} | Stock: ${producto.stock}`,
+            20,
+            y
+        );
 
-    doc.text(
-        "- Mayra Rodríguez Vidal",
-        25,
-        90
-    );
+        y += 10;
+
+    });
 
     doc.save(
         "Inventario_EasyBeauty.pdf"
     );
 
 }
+
+/* ========================= */
+/* INICIAR */
+/* ========================= */
+
+renderProductos();
 
 </script>
 
